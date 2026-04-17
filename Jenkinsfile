@@ -36,10 +36,19 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sh """
-                scp -o StrictHostKeyChecking=no index.html ubuntu@${TARGET_IP}:/tmp/
-                ssh ubuntu@${TARGET_IP} 'sudo mv /tmp/index.html /var/www/html/index.html'
-                """
+                script {
+                    if (env.TARGET_ENV == "GREEN") {
+                        sh '''
+                        scp -o StrictHostKeyChecking=no green.html ubuntu@<GREEN-IP>:/tmp/index.html
+                        ssh ubuntu@<GREEN-IP> "sudo mv /tmp/index.html /var/www/html/index.html"
+                        '''
+                    } else {
+                        sh '''
+                        scp -o StrictHostKeyChecking=no blue.html ubuntu@<BLUE-IP>:/tmp/index.html
+                        ssh ubuntu@<BLUE-IP> "sudo mv /tmp/index.html /var/www/html/index.html"
+                        '''
+                    }
+                }
             }
         }
 
