@@ -14,11 +14,11 @@ pipeline {
 
     stages {
 
-        stage('Clone Code') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Khatav9411/BlueGreenRepo.git'
-            }
-        }
+        // stage('Clone Code') {
+            // steps {
+                // git branch: 'main', url: 'https://github.com/Khatav9411/BlueGreenRepo.git'
+            // }
+        // }
 
         stage('Select Target Environment') {
             steps {
