@@ -39,13 +39,13 @@ pipeline {
                 script {
                     if (env.TARGET_ENV == "GREEN") {
                         sh '''
-                        scp -o StrictHostKeyChecking=no green.html ubuntu@<GREEN-IP>:/tmp/index.html
-                        ssh ubuntu@<GREEN-IP> "sudo mv /tmp/index.html /var/www/html/index.html"
+                        scp -o StrictHostKeyChecking=no green.html ubuntu@<GREEN_IP>:/tmp/index.html
+                        ssh ubuntu@<GREEN_IP> "sudo mv /tmp/index.html /var/www/html/index.html"
                         '''
                     } else {
                         sh '''
-                        scp -o StrictHostKeyChecking=no blue.html ubuntu@<BLUE-IP>:/tmp/index.html
-                        ssh ubuntu@<BLUE-IP> "sudo mv /tmp/index.html /var/www/html/index.html"
+                        scp -o StrictHostKeyChecking=no blue.html ubuntu@<BLUE_IP>:/tmp/index.html
+                        ssh ubuntu@<BLUE_IP> "sudo mv /tmp/index.html /var/www/html/index.html"
                         '''
                     }
                 }
